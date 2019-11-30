@@ -1,4 +1,9 @@
 FROM openjdk:14-jdk-alpine
+RUN apk add git maven
+RUN git clone https://github.com/SGmuwa/Web-develop-backend-7-semester.git
+WORKDIR /Web-develop-backend-7-semester
+RUN mvn package
+WORKDIR /
 VOLUME /tmp
 ARG JAR_FILE=Web-develop-backend-7-semester/target/ItemService-1.0-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar

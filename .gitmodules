@@ -1,6 +1,0 @@
-[submodule "frontend/Web-develop-frontend-7-semester"]
-	path = frontend/Web-develop-frontend-7-semester
-	url = git@github.com:SGmuwa/Web-develop-frontend-7-semester.git
-[submodule "backend/Web-develop-backend-7-semester"]
-	path = backend/Web-develop-backend-7-semester
-	url = git@github.com:SGmuwa/Web-develop-backend-7-semester.git

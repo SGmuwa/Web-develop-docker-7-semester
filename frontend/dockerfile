@@ -1,3 +1,4 @@
-FROM nginx
-EXPOSE 80
-COPY ./Web-develop-frontend-7-semester/index.html /usr/share/nginx/html
+FROM alpine as container
+RUN apk add nginx git
+RUN git clone https://github.com/SGmuwa/Web-develop-frontend-7-semester.git
+COPY --from=container /Web-develop-frontend-7-semester/index.html /usr/share/nginx/html
