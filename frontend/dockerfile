@@ -1,4 +1,6 @@
-FROM alpine as container
+FROM alpine as builder
 RUN apk add nginx git
-RUN git clone https://github.com/SGmuwa/Web-develop-frontend-7-semester.git
-COPY --from=container /Web-develop-frontend-7-semester/index.html /usr/share/nginx/html
+ADD https://api.github.com/repos/SGmuwa/Web-develop-frontend-7-semester/git/refs/heads/master version.json
+RUN git clone -bmaster https://github.com/SGmuwa/Web-develop-frontend-7-semester.git
+FROM nginx
+COPY --from=builder /Web-develop-frontend-7-semester/dist /usr/share/nginx/html
