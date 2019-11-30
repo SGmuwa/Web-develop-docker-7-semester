@@ -1,5 +1,5 @@
 FROM alpine as builder
-RUN apk add nginx git
+RUN apk add git
 ADD https://api.github.com/repos/SGmuwa/Web-develop-frontend-7-semester/git/refs/heads/master version.json
 RUN git clone -bmaster https://github.com/SGmuwa/Web-develop-frontend-7-semester.git
 FROM nginx
