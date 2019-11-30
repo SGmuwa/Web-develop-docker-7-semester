@@ -2,17 +2,12 @@ version: "3"
 services:
   frontend:
     image: frontend
-    build: ../frontend/
-    
-  frontend2:
-    image: frontend2
-    build: ./testFrontend2/
+    build: ./frontend/
 
 
   #backend:
     #image: backend
-    #ports:
-      #- 8001:80
+    #build: ./backend
 
 
   gateway:
@@ -20,4 +15,4 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf
