@@ -5,9 +5,9 @@ services:
     build: ./frontend/
 
 
-  #backend:
-    #image: backend
-    #build: ./backend
+  backend:
+    image: backend
+    build: ./backend
 
 
   gateway:
