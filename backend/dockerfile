@@ -1,11 +1,15 @@
 FROM openjdk:14-jdk-alpine
+VOLUME /tmp
 RUN apk add git maven
-ADD https://api.github.com/repos/SGmuwa/Web-develop-backend-7-semester/git/refs/heads/master version.json
-RUN git clone -bmaster https://github.com/SGmuwa/Web-develop-backend-7-semester.git
-WORKDIR /Web-develop-backend-7-semester
+ARG BRANCH=master
+ARG REPOSITORY_USER=SGmuwa
+ARG REPOSITORY_NAME=Web-develop-backend-7-semester
+ADD https://api.github.com/repos/${REPOSITORY_USER}/${REPOSITORY_NAME}/git/refs/heads/${BRANCH} version.json
+RUN git clone -b${BRANCH} https://github.com/${REPOSITORY_USER}/${REPOSITORY_NAME}.git /gitrepository
+WORKDIR /gitrepository
 RUN mvn package
-WORKDIR /
 RUN find . -iname "ItemService*.jar"
-ARG JAR_FILE=/Web-develop-backend-7-semester/target/ItemService-1.0-SNAPSHOT.jar
+WORKDIR /
+ARG JAR_FILE=/gitrepository/target/ItemService-1.0-SNAPSHOT.jar
 RUN cp ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
